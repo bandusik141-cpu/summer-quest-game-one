@@ -14,7 +14,29 @@ body {
     text-align: center;
 }
 
-/* ===== КОМНАТЫ ===== */
+/* ===== FULLSCREEN GATE ===== */
+#fsGate {
+    position: fixed;
+    inset: 0;
+    background: #0b0c10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#fsGate button {
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background: white;
+    color: black;
+    border-radius: 8px;
+}
+
+/* ===== ROOM SYSTEM ===== */
 .room {
     display: none;
     height: 100vh;
@@ -26,13 +48,12 @@ body {
     display: block;
 }
 
-/* ===== АНИМАЦИЯ КОМНАТЫ ===== */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(1.02); }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* ===== ЛЮСТРА / ЧАСЫ ===== */
+/* ===== LIGHT ===== */
 .top {
     position: absolute;
     top: 10px;
@@ -44,7 +65,7 @@ body {
     opacity: 0.9;
 }
 
-/* ===== ЦЕНТР ===== */
+/* ===== CENTER ===== */
 .center {
     position: absolute;
     top: 18vh;
@@ -55,7 +76,7 @@ body {
     font-size: clamp(32px, 6vw, 60px);
 }
 
-/* ===== ДВЕРИ ===== */
+/* ===== DOORS ===== */
 .doors {
     position: absolute;
     bottom: 8vh;
@@ -76,29 +97,36 @@ body {
 }
 
 .door.opening {
-    transform: scale(1.2) rotateY(20deg);
+    transform: scale(1.2) rotateY(25deg);
     opacity: 0;
 }
 
-/* ===== ТУМАН ===== */
+/* ===== ATMOSPHERE ===== */
 .room::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%);
     pointer-events: none;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05), transparent 50%),
+        radial-gradient(circle at center, rgba(0,0,0,0.5), transparent 70%);
 }
 </style>
-
 </head>
+
 <body>
 
-<!-- ========== ROOM 1 ========== -->
-<div class="room active" id="r1">
-    <div class="top">
-        <img src="https://i.postimg.cc/TwBJkyDC/lampa.png">
-    </div>
+<!-- FULLSCREEN -->
+<div id="fsGate">
+    <h1>⚠️ Бесконечный замок</h1>
+    <p>Вы не сможете играть без полноэкранного режима</p>
+    <button onclick="enterFS()">Войти в игру</button>
+</div>
 
+<!-- ROOMS -->
+<div class="room active" id="r1">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>1</h2></div>
 
     <div class="doors">
@@ -108,7 +136,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 2 ========== -->
 <div class="room" id="r2">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>2</h2></div>
@@ -120,7 +147,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 3 ========== -->
 <div class="room" id="r3">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>3</h2></div>
@@ -132,7 +158,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 4 ========== -->
 <div class="room" id="r4">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>4</h2></div>
@@ -144,7 +169,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 5 ========== -->
 <div class="room" id="r5">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>5</h2></div>
@@ -156,7 +180,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 6 ========== -->
 <div class="room" id="r6">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>6</h2></div>
@@ -168,7 +191,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 7 ========== -->
 <div class="room" id="r7">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>7</h2></div>
@@ -180,7 +202,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 8 ========== -->
 <div class="room" id="r8">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>8</h2></div>
@@ -192,7 +213,6 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 9 ========== -->
 <div class="room" id="r9">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>9</h2></div>
@@ -204,42 +224,65 @@ body {
     </div>
 </div>
 
-<!-- ========== ROOM 10 FINAL ========== -->
 <div class="room" id="r10">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
-    <div class="center">
-        <h2>10</h2>
-        <p>Ты нашёл выход...</p>
-    </div>
+    <div class="center"><h2>10</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="finish()">
+        <div class="door" onclick="finish(this)">
             <img src="https://i.postimg.cc/ZRXxf9dr/otkrytayadver.png">
         </div>
     </div>
 </div>
 
 <script>
-function go(n, el){
-    if(el){
-        el.classList.add("opening");
 
-        setTimeout(() => {
-            changeRoom(n);
-        }, 500);
-    } else {
-        changeRoom(n);
-    }
+let locked = false;
+
+/* FULLSCREEN */
+function enterFS(){
+    let el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen();
+    document.getElementById("fsGate").style.display = "none";
 }
 
+/* ANTI-SPAM NAVIGATION */
+function go(n, el){
+
+    if(locked) return;
+    locked = true;
+
+    if(el){
+        el.classList.add("opening");
+    }
+
+    setTimeout(() => {
+        changeRoom(n);
+        locked = false;
+    }, 500);
+}
+
+/* ROOM SWITCH */
 function changeRoom(n){
     document.querySelectorAll('.room').forEach(r => r.classList.remove('active'));
     document.getElementById('r'+n).classList.add('active');
 }
 
-function finish(){
-    alert("Квест завершён...");
+/* FINISH */
+function finish(el){
+    if(locked) return;
+    locked = true;
+
+    if(el){
+        el.classList.add("opening");
+    }
+
+    setTimeout(() => {
+        alert("Ты выбрался из замка...");
+        locked = false;
+    }, 800);
 }
+
 </script>
 
 </body>
