@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Бесконечный замок</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f0f14;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .room {
+        display: none;
+        height: 100vh;
+        position: relative;
+        padding-top: 20px;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .ceiling {
+        position: absolute;
+        top: 10px;
+        width: 100%;
+    }
+
+    .ceiling img {
+        width: 200px;
+        opacity: 0.9;
+    }
+
+    .clock {
+        position: absolute;
+        top: 80px;
+        left: 20px;
+    }
+
+    .clock img {
+        width: 120px;
+        opacity: 0.9;
+    }
+
+    .doors {
+        position: absolute;
+        bottom: 80px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+    }
+
+    .door {
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .door img {
+        width: 150px;
+    }
+
+    .door:hover {
+        transform: scale(1.05);
+    }
+
+    .single-door {
+        justify-content: center;
+    }
+
+    .exit {
+        font-size: 24px;
+        margin-top: 40px;
+        cursor: pointer;
+        color: #00ffcc;
+    }
+</style>
+</head>
+<body>
+
+<!-- ROOM 1 -->
+<div class="room active" id="room1">
+    <div class="ceiling">
+        <img src="https://kommodo.ai/i/5GMkE1m4SpQYZBlOz6AY">
+    </div>
+
+    <div class="clock">
+        <img src="https://kommodo.ai/i/hnoi4YHQFaQmS1KDJR98">
+    </div>
+
+    <div class="doors">
+        <div class="door" onclick="go(2)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Левая дверь</p>
+        </div>
+
+        <div class="door" onclick="go(3)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Правая дверь</p>
+        </div>
+    </div>
+</div>
+
+<!-- ROOM 2 -->
+<div class="room" id="room2">
+    <div class="ceiling"><img src="https://kommodo.ai/i/5GMkE1m4SpQYZBlOz6AY"></div>
+
+    <div class="doors single-door">
+        <div class="door" onclick="go(1)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>← Ловушка</p>
+        </div>
+
+        <div class="door" onclick="go(4)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Вперёд</p>
+        </div>
+    </div>
+</div>
+
+<!-- ROOM 3 -->
+<div class="room" id="room3">
+    <div class="ceiling"><img src="https://kommodo.ai/i/5GMkE1m4SpQYZBlOz6AY"></div>
+
+    <div class="doors">
+        <div class="door" onclick="go(1)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Ловушка</p>
+        </div>
+
+        <div class="door" onclick="go(5)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Вперёд</p>
+        </div>
+    </div>
+</div>
+
+<!-- ROOM 4 -->
+<div class="room" id="room4">
+    <div class="ceiling"><img src="https://kommodo.ai/i/5GMkE1m4SpQYZBlOz6AY"></div>
+
+    <div class="doors single-door">
+        <div class="door" onclick="go(6)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Дверь</p>
+        </div>
+    </div>
+</div>
+
+<!-- ROOM 5 -->
+<div class="room" id="room5">
+    <div class="ceiling"><img src="https://kommodo.ai/i/5GMkE1m4SpQYZBlOz6AY"></div>
+
+    <div class="doors">
+        <div class="door" onclick="go(3)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Ловушка</p>
+        </div>
+
+        <div class="door" onclick="go(6)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Вперёд</p>
+        </div>
+    </div>
+</div>
+
+<!-- ROOM 6 -->
+<div class="room" id="room6">
+    <div class="ceiling"><img src="https://kommodo.ai/i/5GMkE1m4SpQYZBlOz6AY"></div>
+
+    <div class="doors">
+        <div class="door" onclick="go(2)">
+            <img src="https://kommodo.ai/i/r369X4oT0eofHDcPJEF9">
+            <p>Ловушка</p>
+        </div>
+
+        <div class="door" onclick="go(7)">
+            <img src="https://kommodo.ai/i/ijn0Fv6yamGoDbaJJB1">
+            <p>Открытая дверь</p>
+        </div>
+    </div>
+</div>
+
+<!-- ROOM 7 (FINALE) -->
+<div class="room" id="room7">
+    <div class="ceiling"><img src="https://kommodo.ai/i/5GMkE1m4SpQYZBlOz6AY"></div>
+
+    <h1>Ты выбрался...</h1>
+    <p>Замок больше не держит тебя.</p>
+
+    <div class="exit" onclick="alert('Переход к следующей игре / стадии!')">
+        ▶ Перейти дальше
+    </div>
+</div>
+
+<script>
+function go(room) {
+    document.querySelectorAll('.room').forEach(r => r.classList.remove('active'));
+    document.getElementById('room' + room).classList.add('active');
+}
+</script>
+
+</body>
+</html>
