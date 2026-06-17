@@ -14,17 +14,25 @@ body {
     text-align: center;
 }
 
+/* ===== КОМНАТЫ ===== */
 .room {
     display: none;
     height: 100vh;
     position: relative;
-    padding-top: 20px;
+    animation: fadeIn 0.5s ease;
 }
 
 .active {
     display: block;
 }
 
+/* ===== АНИМАЦИЯ КОМНАТЫ ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(1.02); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== ЛЮСТРА / ЧАСЫ ===== */
 .top {
     position: absolute;
     top: 10px;
@@ -32,52 +40,60 @@ body {
 }
 
 .top img {
-    width: 140px;
+    width: min(180px, 40vw);
     opacity: 0.9;
 }
 
+/* ===== ЦЕНТР ===== */
 .center {
     position: absolute;
-    top: 90px;
+    top: 18vh;
     width: 100%;
 }
 
+.center h2 {
+    font-size: clamp(32px, 6vw, 60px);
+}
+
+/* ===== ДВЕРИ ===== */
 .doors {
     position: absolute;
-    bottom: 80px;
+    bottom: 8vh;
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 4vw;
+    flex-wrap: wrap;
 }
 
 .door {
     cursor: pointer;
-    transition: 0.2s;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .door img {
-    width: 140px;
+    width: min(160px, 28vw);
 }
 
-.door:hover {
-    transform: scale(1.05);
+.door.opening {
+    transform: scale(1.2) rotateY(20deg);
+    opacity: 0;
 }
 
-.single {
-    justify-content: center;
-}
-
-h2 {
-    margin-top: 120px;
+/* ===== ТУМАН ===== */
+.room::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%);
+    pointer-events: none;
 }
 </style>
 
 </head>
 <body>
 
-<!-- ROOM TEMPLATE STYLE -->
-<!-- ROOM 1 -->
+<!-- ========== ROOM 1 ========== -->
 <div class="room active" id="r1">
     <div class="top">
         <img src="https://i.postimg.cc/TwBJkyDC/lampa.png">
@@ -86,120 +102,117 @@ h2 {
     <div class="center"><h2>1</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(2)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(3)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(4)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(2,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(4,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 2 -->
+<!-- ========== ROOM 2 ========== -->
 <div class="room" id="r2">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>2</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(5)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(6)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(1)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(5,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(6,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(1,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 3 -->
+<!-- ========== ROOM 3 ========== -->
 <div class="room" id="r3">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>3</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(1)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(7)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(5)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(1,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(7,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(5,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 4 -->
+<!-- ========== ROOM 4 ========== -->
 <div class="room" id="r4">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>4</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(3)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(8)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(2)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(8,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(2,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 5 -->
+<!-- ========== ROOM 5 ========== -->
 <div class="room" id="r5">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>5</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(6)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(9)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(3)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(6,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(9,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 6 -->
+<!-- ========== ROOM 6 ========== -->
 <div class="room" id="r6">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>6</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(10)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(2)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(4)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(10,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(2,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(4,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 7 -->
+<!-- ========== ROOM 7 ========== -->
 <div class="room" id="r7">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>7</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(8)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(3)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(9)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(8,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(9,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 8 -->
+<!-- ========== ROOM 8 ========== -->
 <div class="room" id="r8">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>8</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(7)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(10)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(4)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(7,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(10,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(4,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 9 -->
+<!-- ========== ROOM 9 ========== -->
 <div class="room" id="r9">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>9</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(5)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(1)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(8)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(5,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(1,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door" onclick="go(8,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
-<!-- ROOM 10 FINAL -->
+<!-- ========== ROOM 10 FINAL ========== -->
 <div class="room" id="r10">
-    <div class="top">
-        <img src="https://i.postimg.cc/TwBJkyDC/lampa.png">
-    </div>
-
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center">
         <h2>10</h2>
-        <p>...</p>
+        <p>Ты нашёл выход...</p>
     </div>
 
-    <div class="doors single">
+    <div class="doors">
         <div class="door" onclick="finish()">
             <img src="https://i.postimg.cc/ZRXxf9dr/otkrytayadver.png">
         </div>
@@ -207,14 +220,25 @@ h2 {
 </div>
 
 <script>
-function go(n){
+function go(n, el){
+    if(el){
+        el.classList.add("opening");
+
+        setTimeout(() => {
+            changeRoom(n);
+        }, 500);
+    } else {
+        changeRoom(n);
+    }
+}
+
+function changeRoom(n){
     document.querySelectorAll('.room').forEach(r => r.classList.remove('active'));
     document.getElementById('r'+n).classList.add('active');
 }
 
 function finish(){
-    alert("Ты прошёл замок...");
-    // сюда потом вставим Google Docs или фрагмент
+    alert("Квест завершён...");
 }
 </script>
 
