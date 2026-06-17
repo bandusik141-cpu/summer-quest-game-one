@@ -87,18 +87,15 @@ body {
     flex-wrap: wrap;
 }
 
-.door {
-    cursor: pointer;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
+/* ВАЖНО: кликается только картинка */
 .door img {
     width: min(160px, 28vw);
+    cursor: pointer;
+    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.door.opening {
-    transform: scale(1.2) rotateY(25deg);
-    opacity: 0;
+.door img:active {
+    transform: scale(1.1);
 }
 
 /* ===== ATMOSPHERE ===== */
@@ -130,9 +127,9 @@ body {
     <div class="center"><h2>1</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(2,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(4,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(2)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(4)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -141,9 +138,9 @@ body {
     <div class="center"><h2>2</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(5,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(6,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(1,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(5)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(6)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(1)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -152,9 +149,9 @@ body {
     <div class="center"><h2>3</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(1,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(7,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(5,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(1)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(7)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(5)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -163,9 +160,9 @@ body {
     <div class="center"><h2>4</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(8,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(2,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(8)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(2)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -174,9 +171,9 @@ body {
     <div class="center"><h2>5</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(6,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(9,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(6)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(9)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -185,9 +182,9 @@ body {
     <div class="center"><h2>6</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(10,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(2,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(4,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(10)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(2)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(4)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -196,9 +193,9 @@ body {
     <div class="center"><h2>7</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(8,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(3,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(9,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(8)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(9)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -207,9 +204,9 @@ body {
     <div class="center"><h2>8</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(7,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(10,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(4,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(7)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(10)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(4)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -218,9 +215,9 @@ body {
     <div class="center"><h2>9</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="go(5,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(1,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
-        <div class="door" onclick="go(8,this)"><img src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(5)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(1)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(8)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
     </div>
 </div>
 
@@ -229,8 +226,8 @@ body {
     <div class="center"><h2>10</h2></div>
 
     <div class="doors">
-        <div class="door" onclick="finish(this)">
-            <img src="https://i.postimg.cc/ZRXxf9dr/otkrytayadver.png">
+        <div class="door">
+            <img onclick="finish()" src="https://i.postimg.cc/ZRXxf9dr/otkrytayadver.png">
         </div>
     </div>
 </div>
@@ -241,46 +238,31 @@ let locked = false;
 
 /* FULLSCREEN */
 function enterFS(){
-    let el = document.documentElement;
-    if (el.requestFullscreen) el.requestFullscreen();
+    document.documentElement.requestFullscreen();
     document.getElementById("fsGate").style.display = "none";
 }
 
-/* ANTI-SPAM NAVIGATION */
-function go(n, el){
-
+/* GO ROOM */
+function go(n){
     if(locked) return;
     locked = true;
 
-    if(el){
-        el.classList.add("opening");
-    }
-
     setTimeout(() => {
-        changeRoom(n);
+        document.querySelectorAll('.room').forEach(r => r.classList.remove('active'));
+        document.getElementById('r'+n).classList.add('active');
         locked = false;
-    }, 500);
-}
-
-/* ROOM SWITCH */
-function changeRoom(n){
-    document.querySelectorAll('.room').forEach(r => r.classList.remove('active'));
-    document.getElementById('r'+n).classList.add('active');
+    }, 400);
 }
 
 /* FINISH */
-function finish(el){
+function finish(){
     if(locked) return;
     locked = true;
-
-    if(el){
-        el.classList.add("opening");
-    }
 
     setTimeout(() => {
         alert("Ты выбрался из замка...");
         locked = false;
-    }, 800);
+    }, 600);
 }
 
 </script>
