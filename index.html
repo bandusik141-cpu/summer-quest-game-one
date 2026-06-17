@@ -87,6 +87,7 @@ body {
     flex-wrap: wrap;
 }
 
+/* ВАЖНО: кликается только картинка */
 .door img {
     width: min(160px, 28vw);
     cursor: pointer;
@@ -108,59 +109,23 @@ body {
         radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05), transparent 50%),
         radial-gradient(circle at center, rgba(0,0,0,0.5), transparent 70%);
 }
-
-/* ===== FX LAYER ===== */
-.fx {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-}
-
-/* туман */
-.fog {
-    background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%);
-}
-
-/* снег */
-.snow {
-    background: url("https://i.ibb.co/6bQ7J1B/snow.gif");
-    opacity: 0.15;
-}
-
-/* дождь */
-.rain {
-    background: url("https://i.imgur.com/r9G7QyQ.gif");
-    opacity: 0.20;
-    mix-blend-mode: screen;
-}
-
-/* гроза */
-.storm {
-    animation: flash 2.8s infinite;
-}
-
-@keyframes flash {
-    92% { filter: brightness(1); }
-    94% { filter: brightness(2); }
-    96% { filter: brightness(0.6); }
-}
 </style>
 </head>
 
 <body>
 
+<!-- FULLSCREEN -->
 <div id="fsGate">
     <h1>⚠️ Бесконечный замок</h1>
-    <button onclick="enterFS()">войти в игру</button>
+    <p>Вы не сможете играть без полноэкранного режима</p>
+    <button onclick="enterFS()">Войти в игру</button>
 </div>
-
-<div id="fx" class="fx"></div>
 
 <!-- ROOMS -->
 <div class="room active" id="r1">
     <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
     <div class="center"><h2>1</h2></div>
+
     <div class="doors">
         <div class="door"><img onclick="go(2)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
         <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
@@ -168,38 +133,116 @@ body {
     </div>
 </div>
 
-<div class="room" id="r2"> ... (оставил как у тебя, не ломаю структуру) </div>
-<div class="room" id="r3"> ... </div>
-<div class="room" id="r4"> ... </div>
-<div class="room" id="r5"> ... </div>
-<div class="room" id="r6"> ... </div>
-<div class="room" id="r7"> ... </div>
-<div class="room" id="r8"> ... </div>
-<div class="room" id="r9"> ... </div>
-<div class="room" id="r10"> ... </div>
+<div class="room" id="r2">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>2</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(5)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(6)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(1)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r3">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>3</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(1)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(7)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(5)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r4">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>4</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(8)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(2)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r5">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>5</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(6)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(9)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r6">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>6</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(10)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(2)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(4)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r7">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>7</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(8)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(3)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(9)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r8">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>8</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(7)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(10)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(4)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r9">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>9</h2></div>
+
+    <div class="doors">
+        <div class="door"><img onclick="go(5)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(1)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+        <div class="door"><img onclick="go(8)" src="https://i.postimg.cc/wvnQWtmk/dver.png"></div>
+    </div>
+</div>
+
+<div class="room" id="r10">
+    <div class="top"><img src="https://i.postimg.cc/TwBJkyDC/lampa.png"></div>
+    <div class="center"><h2>10</h2></div>
+
+    <div class="doors">
+        <div class="door">
+            <img onclick="finish()" src="https://i.postimg.cc/ZRXxf9dr/otkrytayadver.png">
+        </div>
+    </div>
+</div>
 
 <script>
 
 let locked = false;
 
-const fxMap = {
-    1: "fog",
-    2: "rain",
-    3: "storm",
-    4: "fog",
-    5: "",
-    6: "snow",
-    7: "storm",
-    8: "fog",
-    9: "rain",
-    10: "storm"
-};
-
+/* FULLSCREEN */
 function enterFS(){
     document.documentElement.requestFullscreen();
     document.getElementById("fsGate").style.display = "none";
 }
 
+/* GO ROOM */
 function go(n){
     if(locked) return;
     locked = true;
@@ -207,12 +250,19 @@ function go(n){
     setTimeout(() => {
         document.querySelectorAll('.room').forEach(r => r.classList.remove('active'));
         document.getElementById('r'+n).classList.add('active');
-
-        const fx = document.getElementById("fx");
-        fx.className = "fx " + (fxMap[n] || "");
-
         locked = false;
     }, 400);
+}
+
+/* FINISH */
+function finish(){
+    if(locked) return;
+    locked = true;
+
+    setTimeout(() => {
+        alert("Ты выбрался из замка...");
+        locked = false;
+    }, 600);
 }
 
 </script>
