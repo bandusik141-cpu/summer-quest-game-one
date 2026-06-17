@@ -201,7 +201,21 @@
 
         #winScreen h1 { font-size: 3rem; margin-bottom: 20px; }
         #winScreen p { font-size: 1.5rem; opacity: 0.7; }
-        #secret-code { margin-top: 40px; font-family: monospace; color: #aaa; }
+        
+        .next-btn {
+            background: #ff9e00;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .next-btn:hover { background: #ff7b00; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -233,12 +247,13 @@
 
 <div id="winScreen">
     <h1>Ты выбрался из замка...</h1>
-    <p>Свет в конце туннеля был настоящим.</p>
-    <div id="secret-code">Фрагмент: <strong>K4</strong></div>
+    <p>Но путь к истине ещё не окончен.</p>
+    <a href="ССЫЛКА_НА_ИГРУ_2" id="nextLink" class="next-btn">Идти в пляжный бар ➔</a>
 </div>
 
 <script>
-    // Game Logic Configuration
+    // --- НАСТРОЙКИ ---
+    const NEXT_GAME_URL = "ССЫЛКА_НА_ИГРУ_2"; // ВСТАВЬ ССЫЛКУ НА 2-Ю ИГРУ
     const TOTAL_ROOMS = 30;
     const CORRECT_PATH = [1, 4, 9, 12, 15, 18, 22, 25, 27, 29, 30];
     
@@ -275,83 +290,56 @@
         const lamp = document.getElementById('lampImg');
         const atmos = document.getElementById('atmosphere');
         
-        // Reset effects
         document.body.classList.remove('red-room');
         lamp.classList.remove('flicker');
         numDisplay.style.opacity = "1";
-        
-        // Update stats
         document.getElementById('stepCount').innerText = steps;
-        
-        // Room Logic
         numDisplay.innerText = currentRoom;
         
-        // Atmospheric Phrase (every few rooms)
         if (steps > 0 && steps % 3 === 0) {
             atmos.innerText = phrases[Math.floor(Math.random() * phrases.length)];
             atmos.style.opacity = "0.6";
             setTimeout(() => atmos.style.opacity = "0", 3000);
         }
 
-        // Special Room Effects
-        const isTrapRoom = !CORRECT_PATH.includes(currentRoom) && Math.random() > 0.7;
         const isRedRoom = Math.random() > 0.9;
         const isBrokenLamp = Math.random() > 0.85;
 
-        if (isRedRoom) {
-            document.body.classList.add('red-room');
-        }
+        if (isRedRoom) document.body.classList.add('red-room');
         if (isBrokenLamp) {
             lamp.classList.add('flicker');
             numDisplay.style.opacity = "0.2";
         }
 
-        // Generate Doors
         doorContainer.innerHTML = "";
-        
-        // Determine number of doors
         let doorCount = 3;
-        if (currentRoom === 30) doorCount = 1; // Exit door
+        if (currentRoom === 30) doorCount = 1;
         
         let doors = [];
         if (currentRoom === 30) {
             doors.push({ target: 'win', type: 'exit' });
         } else {
-            // Find correct next room if on path
             let nextCorrect = -1;
             const pathIdx = CORRECT_PATH.indexOf(currentRoom);
             if (pathIdx !== -1 && pathIdx < CORRECT_PATH.length - 1) {
                 nextCorrect = CORRECT_PATH[pathIdx + 1];
             }
 
-            // Create doors
             for (let i = 0; i < doorCount; i++) {
                 let target;
                 if (i === 0 && nextCorrect !== -1) {
-                    target = nextCorrect; // The right path
+                    target = nextCorrect;
                 } else {
-                    // Wrong paths
                     target = Math.floor(Math.random() * (TOTAL_ROOMS - 1)) + 1;
-                    // Avoid direct loop to same room for variety
                     if (target === currentRoom) target = 1; 
                 }
-                
-                // Randomly add a trap to wrong doors
-                let type = 'normal';
-                if (target !== nextCorrect && Math.random() > 0.8) {
-                    type = 'trap';
-                }
-                
+                let type = (target !== nextCorrect && Math.random() > 0.8) ? 'trap' : 'normal';
                 doors.push({ target, type });
             }
         }
 
-        // Shuffle doors (except for the exit)
-        if (currentRoom !== 30) {
-            doors.sort(() => Math.random() - 0.5);
-        }
+        if (currentRoom !== 30) doors.sort(() => Math.random() - 0.5);
 
-        // Render Doors
         doors.forEach(d => {
             const doorDiv = document.createElement('div');
             doorDiv.className = 'door';
@@ -368,7 +356,6 @@
             doorContainer.appendChild(doorDiv);
         });
 
-        // Fade in
         view.classList.remove('fade-out');
         locked = false;
     }
@@ -377,10 +364,7 @@
         if (locked) return;
         locked = true;
         steps++;
-
-        const view = document.getElementById('roomView');
-        view.classList.add('fade-out');
-
+        document.getElementById('roomView').classList.add('fade-out');
         setTimeout(() => {
             currentRoom = n;
             initRoom();
@@ -391,17 +375,12 @@
         if (locked) return;
         locked = true;
         steps++;
-        
-        const atmos = document.getElementById('atmosphere');
-        atmos.innerText = "Ты чувствуешь надежду...";
-        atmos.style.opacity = "1";
-
-        const view = document.getElementById('roomView');
-        view.classList.add('fade-out');
-
+        document.getElementById('atmosphere').innerText = "Ты чувствуешь надежду...";
+        document.getElementById('atmosphere').style.opacity = "1";
+        document.getElementById('roomView').classList.add('fade-out');
         setTimeout(() => {
-            atmos.style.opacity = "0";
-            currentRoom = 1; // Send back to start
+            document.getElementById('atmosphere').style.opacity = "0";
+            currentRoom = 1;
             initRoom();
         }, 1500);
     }
@@ -410,12 +389,10 @@
         if (locked) return;
         locked = true;
         steps++;
-        
-        const view = document.getElementById('roomView');
-        view.classList.add('fade-out');
-
+        document.getElementById('roomView').classList.add('fade-out');
         setTimeout(() => {
             document.getElementById('winScreen').style.display = 'flex';
+            document.getElementById('nextLink').href = NEXT_GAME_URL;
         }, 1000);
     }
 </script>
